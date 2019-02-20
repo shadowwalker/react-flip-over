@@ -24,7 +24,7 @@ interface IState {
   rotation: number
 }
 
-export default class Flipper extends React.Component<IProps, IState> {
+export default class FlipOver extends React.Component<IProps, IState> {
 
   static getDerivedStateFromProps(props: IProps, state: IState): IState | null {
     const flipped = Boolean(props.flipped)

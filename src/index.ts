@@ -1,6 +1,6 @@
-import Flipper from './Flipper'
+import FlipOver from './FlipOver'
 
 export {
-  Flipper as default
+  FlipOver as default
 }
 
