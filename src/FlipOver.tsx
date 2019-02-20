@@ -1,4 +1,4 @@
-import React, { CSSProperties } from 'react'
+import * as React from 'react'
 
 type Direction = 'horizontal' | 'vertical'
 
@@ -69,12 +69,12 @@ export default class FlipOver extends React.Component<IProps, IState> {
     const styleFront = {
       transform: `${rotateDir}(${rotation}deg)`,
       ...styles
-    } as CSSProperties
+    } as React.CSSProperties
 
     const styleBack = {
       transform: `${rotateDir}(${rotation + (style === 'default' ? -180 : 180)}deg)`,
       ...styles
-    } as CSSProperties
+    } as React.CSSProperties
 
     return (
       <div
