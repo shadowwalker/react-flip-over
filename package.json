@@ -1,10 +1,10 @@
 {
-  "name": "@weiwio/flipper",
+  "name": "react-flip-over",
   "version": "1.0.0",
   "description": "A react component for flipping animation",
   "main": "index.js",
   "types": "index.d.ts",
-  "repository": "https://github.com/shadowwalker/flipper",
+  "repository": "https://github.com/shadowwalker/react-flip-over",
   "author": "Wei Wang",
   "license": "MIT",
   "private": false,

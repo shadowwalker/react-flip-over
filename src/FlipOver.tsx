@@ -1,14 +1,8 @@
 import React, { CSSProperties } from 'react'
 
-enum Direction {
-  Horizontal = 'horizontal',
-  Vertical = 'vertical'
-}
+type Direction = 'horizontal' | 'vertical'
 
-enum Style {
-  Normal = 'normal',  // back and forth style
-  Revolving = 'revolving'  // revolving door style
-}
+type Style = 'default' | 'revolve'
 
 interface IProps {
   flipped?: boolean
@@ -25,15 +19,18 @@ interface IState {
 }
 
 export default class FlipOver extends React.Component<IProps, IState> {
+  state: IState = {
+    rotation: this.props.flipped ? 180 : 0
+  }
 
   static getDerivedStateFromProps(props: IProps, state: IState): IState | null {
     const flipped = Boolean(props.flipped)
     const isFlipped = state.rotation % 360 === 180
     if (isFlipped === flipped) { return null }
 
-    const { style= Style.Normal } = props
+    const { style = 'default' } = props
 
-    if (style === Style.Normal) {
+    if (style === 'default') {
       return {
         rotation: isFlipped ? 0 : 180
       }
@@ -43,15 +40,12 @@ export default class FlipOver extends React.Component<IProps, IState> {
       }
     }
   }
-  state: IState = {
-    rotation: this.props.flipped ? 180 : 0
-  }
 
   render() {
     const {
-      direction= Direction.Horizontal,
-      style= Style.Normal,
-      duration= 0.5,
+      direction = 'horizontal',
+      style = 'default',
+      duration = 0.5,
       width = 'auto',
       height = 'auto',
       children
@@ -61,7 +55,7 @@ export default class FlipOver extends React.Component<IProps, IState> {
     const front = children[0]
     const back = children[1]
 
-    const rotateDir = direction === Direction.Horizontal ?  'rotateY' : 'rotateX'
+    const rotateDir = direction === 'horizontal' ?  'rotateY' : 'rotateX'
 
     const styles = {
       width: '100%',
@@ -78,7 +72,7 @@ export default class FlipOver extends React.Component<IProps, IState> {
     } as CSSProperties
 
     const styleBack = {
-      transform: `${rotateDir}(${rotation + (style === Style.Normal ? -180 : 180)}deg)`,
+      transform: `${rotateDir}(${rotation + (style === 'default' ? -180 : 180)}deg)`,
       ...styles
     } as CSSProperties
 
@@ -110,4 +104,3 @@ export default class FlipOver extends React.Component<IProps, IState> {
     )
   }
 }
-
