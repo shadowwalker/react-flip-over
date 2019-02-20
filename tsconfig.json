@@ -1,14 +1,14 @@
 {
   "compilerOptions": {
     "outDir": ".",
-    "module": "commonjs",
-    "target": "es6",
+    "module": "esnext",
+    "target": "esnext",
     "lib": [ "es2017", "dom" ],
     "jsx": "react",
     "moduleResolution": "node",
     "declaration": true,
     "allowSyntheticDefaultImports": true,
-    "noImplicitAny": true,
+    "noImplicitAny": false,
     "removeComments": true
   },
   "files": [
