@@ -15,25 +15,19 @@ yarn add react-flip-over
 [![Edit react-flip-over demo](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/14jm5ljk73?codemirror=1&fontsize=14)
 
 ``` javascript
-import React from "react";
-import ReactDOM from "react-dom";
-import FlipOver from "react-flip-over";
-
-import "./styles.css";
-
 class App extends React.Component {
   state = {
     flipped: false
-  };
+  }
 
   flip = () => {
     this.setState(state => ({
       flipped: !state.flipped
-    }));
-  };
+    }))
+  }
 
   render() {
-    const { flipped } = this.state;
+    const { flipped } = this.state
 
     return (
       <div className="App">
@@ -46,12 +40,9 @@ class App extends React.Component {
           </div>
         </FlipOver>
       </div>
-    );
+    )
   }
 }
-
-const rootElement = document.getElementById("root");
-ReactDOM.render(<App />, rootElement);
 ```
 
 ## API
