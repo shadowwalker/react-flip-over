@@ -22,23 +22,25 @@ interface IState {
 
 export default class FlipOver extends React.Component<IProps, IState> {
   state: IState = {
-    rotation: this.props.flipped ? 180 : 0
+    rotation: this.props.flipped ? 180 : 0,
   }
 
   static getDerivedStateFromProps(props: IProps, state: IState): IState | null {
     const flipped = Boolean(props.flipped)
     const isFlipped = state.rotation % 360 === 180
-    if (isFlipped === flipped) { return null }
+    if (isFlipped === flipped) {
+      return null
+    }
 
     const { rotate = 'default' } = props
 
     if (rotate === 'default') {
       return {
-        rotation: isFlipped ? 0 : 180
+        rotation: isFlipped ? 0 : 180,
       }
     } else {
       return {
-        rotation: state.rotation + 180
+        rotation: state.rotation + 180,
       }
     }
   }
@@ -52,14 +54,14 @@ export default class FlipOver extends React.Component<IProps, IState> {
       height = 'auto',
       perspective = 5000,
       style = {},
-      children
+      children,
     } = this.props
     const { rotation }: IState = this.state
 
     const front = children[0]
     const back = children[1]
 
-    const rotateDir = direction === 'horizontal' ?  'rotateY' : 'rotateX'
+    const rotateDir = direction === 'horizontal' ? 'rotateY' : 'rotateX'
 
     const styles = {
       width: '100%',
@@ -67,17 +69,17 @@ export default class FlipOver extends React.Component<IProps, IState> {
       position: 'absolute',
       transition: `${duration}s`,
       BackfaceVisibility: 'hidden',
-      WebkitBackfaceVisibility: 'hidden'
+      WebkitBackfaceVisibility: 'hidden',
     }
 
     const styleFront = {
       transform: `${rotateDir}(${rotation}deg)`,
-      ...styles
+      ...styles,
     } as React.CSSProperties
 
     const styleBack = {
       transform: `${rotateDir}(${rotation + (rotate === 'default' ? -180 : 180)}deg)`,
-      ...styles
+      ...styles,
     } as React.CSSProperties
 
     return (
@@ -86,7 +88,8 @@ export default class FlipOver extends React.Component<IProps, IState> {
           ...style,
           width,
           height,
-          perspective: `${perspective}px`
+          backgroundColor: 'transparent',
+          perspective: `${perspective}px`,
         }}
       >
         <div
@@ -95,15 +98,12 @@ export default class FlipOver extends React.Component<IProps, IState> {
             height: '100%',
             position: 'relative',
             transformStyle: 'preserve-3d',
-            transition: `${duration}s`
+            backgroundColor: 'transparent',
+            transition: `${duration}s`,
           }}
         >
-          <div style={styleFront}>
-            {front}
-          </div>
-          <div style={styleBack}>
-            {back}
-          </div>
+          <div style={styleFront}>{front}</div>
+          <div style={styleBack}>{back}</div>
         </div>
       </div>
     )
