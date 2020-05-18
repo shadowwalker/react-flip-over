@@ -2,15 +2,17 @@ import * as React from 'react'
 
 type Direction = 'horizontal' | 'vertical'
 
-type Style = 'default' | 'revolve'
+type Rotate = 'default' | 'revolve'
 
 interface IProps {
   flipped?: boolean
   direction?: Direction
-  style?: Style
+  rotate?: Rotate
   duration?: number
   width?: number | string
   height?: number | string
+  perspective?: number
+  style?: React.CSSProperties
   children: React.ReactNodeArray
 }
 
@@ -28,9 +30,9 @@ export default class FlipOver extends React.Component<IProps, IState> {
     const isFlipped = state.rotation % 360 === 180
     if (isFlipped === flipped) { return null }
 
-    const { style = 'default' } = props
+    const { rotate = 'default' } = props
 
-    if (style === 'default') {
+    if (rotate === 'default') {
       return {
         rotation: isFlipped ? 0 : 180
       }
@@ -44,10 +46,12 @@ export default class FlipOver extends React.Component<IProps, IState> {
   render() {
     const {
       direction = 'horizontal',
-      style = 'default',
+      rotate = 'default',
       duration = 0.5,
       width = 'auto',
       height = 'auto',
+      perspective = 5000,
+      style = {},
       children
     } = this.props
     const { rotation }: IState = this.state
@@ -72,16 +76,17 @@ export default class FlipOver extends React.Component<IProps, IState> {
     } as React.CSSProperties
 
     const styleBack = {
-      transform: `${rotateDir}(${rotation + (style === 'default' ? -180 : 180)}deg)`,
+      transform: `${rotateDir}(${rotation + (rotate === 'default' ? -180 : 180)}deg)`,
       ...styles
     } as React.CSSProperties
 
     return (
       <div
         style={{
+          ...style,
           width,
           height,
-          perspective: '1000px'
+          perspective: `${perspective}px`
         }}
       >
         <div
