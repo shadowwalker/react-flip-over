@@ -70,9 +70,10 @@ export default class FlipOver extends React.Component<IProps, IState> {
       width: '100%',
       height: '100%',
       position: 'absolute',
-      //transition: `${duration}s`,
+      backgroundColor: 'transparent',
       BackfaceVisibility: 'hidden',
-      WebkitBackfaceVisibility: 'hidden'
+      WebkitBackfaceVisibility: 'hidden',
+      transition: `transform ${duration}s ease-in-out`
     }
 
     const styleFront = {
@@ -101,8 +102,7 @@ export default class FlipOver extends React.Component<IProps, IState> {
             height: '100%',
             position: 'relative',
             transformStyle: 'preserve-3d',
-            backgroundColor: 'transparent',
-            transition: `transform ${duration}s ease-in-out`
+            backgroundColor: 'transparent'
           }}
         >
           <div style={styleFront}>{front}</div>
