@@ -14,6 +14,7 @@ interface IProps {
   perspective?: number
   style?: React.CSSProperties
   children: React.ReactNodeArray
+  className: string
 }
 
 interface IState {
@@ -57,6 +58,7 @@ export default class FlipOver extends React.Component<IProps, IState> {
       height = 'auto',
       perspective = 5000,
       style = {},
+      className = '',
       children
     } = this.props
     const { rotation }: IState = this.state
@@ -88,6 +90,7 @@ export default class FlipOver extends React.Component<IProps, IState> {
 
     return (
       <div
+        className={className}
         style={{
           ...style,
           width,
