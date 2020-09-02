@@ -13,8 +13,8 @@ interface IProps {
   height?: number | string
   perspective?: number
   style?: React.CSSProperties
-  children: React.ReactNodeArray
-  className: string
+  children: [React.ReactNode, React.ReactNode]
+  className?: string
 }
 
 interface IState {
